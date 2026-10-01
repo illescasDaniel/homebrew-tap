@@ -1,3 +1,5 @@
+require "open3"
+
 class CodenavSwiftMcp < Formula
   desc "Compiler-accurate code navigation for Swift codebases, as an MCP server"
   homepage "https://github.com/illescasDaniel/codenav-swift-mcp"
@@ -35,10 +37,12 @@ class CodenavSwiftMcp < Formula
       jsonrpc: "2.0", id: 1, method: "initialize",
       params: { protocolVersion: "2025-03-26", capabilities: {}, clientInfo: { name: "brew", version: "0" } }
     }
-    initialized = { jsonrpc: "2.0", method: "notifications/initialized" }
-    input = "#{JSON.generate(init)}\n#{JSON.generate(initialized)}\n"
-    with_env(CODENAV_SWIFT_WORKSPACE: testpath.to_s) do
-      assert_match "codenav-swift", pipe_output(bin/"codenav-swift-mcp", input, 0)
+    env = { "CODENAV_SWIFT_WORKSPACE" => testpath.to_s }
+    Open3.popen3(env, bin/"codenav-swift-mcp") do |stdin, stdout, _stderr, wait_thr|
+      stdin.puts JSON.generate(init)
+      assert_match "codenav-swift", stdout.gets
+    ensure
+      Process.kill("TERM", wait_thr.pid)
     end
   end
 end
