@@ -30,7 +30,8 @@ class CodenavSwiftMcp < Formula
 
   test do
     assert_predicate bin/"codenav-swift-mcp", :executable?
-    input = '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"brew","version":"0"}}}'
-    assert_match "codenav-swift", pipe_output(bin/"codenav-swift-mcp", input + "\n", 0)
+    init = '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"brew","version":"0"}}}'
+    initialized = '{"jsonrpc":"2.0","method":"notifications/initialized"}'
+    assert_match "codenav-swift", pipe_output(bin/"codenav-swift-mcp", "#{init}\n#{initialized}\n", 0)
   end
 end
