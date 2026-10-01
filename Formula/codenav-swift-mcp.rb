@@ -37,6 +37,8 @@ class CodenavSwiftMcp < Formula
     }
     initialized = { jsonrpc: "2.0", method: "notifications/initialized" }
     input = "#{JSON.generate(init)}\n#{JSON.generate(initialized)}\n"
-    assert_match "codenav-swift", pipe_output(bin/"codenav-swift-mcp", input, 0)
+    with_env(CODENAV_SWIFT_WORKSPACE: testpath.to_s) do
+      assert_match "codenav-swift", pipe_output(bin/"codenav-swift-mcp", input, 0)
+    end
   end
 end
