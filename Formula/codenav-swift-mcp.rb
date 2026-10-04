@@ -9,13 +9,13 @@ class CodenavSwiftMcp < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/illescasDaniel/codenav-swift-mcp/releases/download/v0.2.2/codenav-swift-mcp-0.2.2-macos-arm64.tar.gz"
-      sha256 "f1bf9dcacf49dff778c04d80f064d161e1a1425c370cac3aef3af73af0d763f6"
+      url "https://github.com/illescasDaniel/codenav-swift-mcp/releases/download/v0.2.3/codenav-swift-mcp-0.2.3-macos-arm64.tar.gz"
+      sha256 "033d8cab903f7f5a4823a0e490519e69dbb934e579baec272375d09dae184b3e"
     end
 
     on_intel do
-      url "https://github.com/illescasDaniel/codenav-swift-mcp/releases/download/v0.2.2/codenav-swift-mcp-0.2.2-macos-x86_64.tar.gz"
-      sha256 "ca1cd176dbce7610bc089fd19d3f985c9c1a4c5f76811823da67a848bb0859b8"
+      url "https://github.com/illescasDaniel/codenav-swift-mcp/releases/download/v0.2.3/codenav-swift-mcp-0.2.3-macos-x86_64.tar.gz"
+      sha256 "4274ef13f106c6cdba0c43c27112fb52e8cfed8a258403f083a30a2e272c13d7"
     end
   end
 
